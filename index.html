@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Days Until August 28, 2026</title>
+
+  <style>
+    /* Dark mode base */
+    body {
+      margin: 0;
+      height: 100vh;
+      background-color: #0f0f0f;
+      color: #ffffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    #days {
+      font-size: clamp(4rem, 12vw, 10rem);
+      font-weight: 700;
+      letter-spacing: -0.05em;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="days">--</div>
+
+  <script>
+    function calculateDays() {
+      const now = new Date();
+
+      // Target date: August 28, 2026 at midnight
+      const target = new Date(2026, 7, 28); 
+      // Month is 0-based: 7 = August
+
+      // Remove time portion for accurate day difference
+      const today = new Date(
+        now.getFullYear(),
+        now.getMonth(),
+        now.getDate()
+      );
+
+      const diffTime = target - today;
+      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+      document.getElementById("days").textContent = diffDays;
+    }
+
+    // Initial calculation
+    calculateDays();
+
+    // Recalculate every minute so it updates right after midnight
+    setInterval(calculateDays, 60 * 1000);
+  </script>
+
+</body>
+</html>
